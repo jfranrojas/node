@@ -3,7 +3,15 @@ class productManager{
         this.products = []
     }
     getNewId(){
-        return this.products.length + 1; 
+        let idMax = 0
+        this.products.forEach(product => {
+            if (product.id > idMax) {
+                idMax = product.id
+            }
+        });
+        return idMax + 1;
+
+        // return this.products.length + 1; SE ROMPE SI UNO BORRA CON ESTA
     }
     getProducts(){
         return(console.log(this.products))  
@@ -29,13 +37,17 @@ class productManager{
     
 
     getProductById(id){
-        let product = this.products.find( elem => elem.id == id)
-        return product;
+        let ans = this.findProduct(id)
+        if (!this.findProduct(id)) {
+            ans = "Not Found"
+        }
+        return ans ;
     }
 }
 
 const manager = new productManager();
 
 manager.addProduct("Teclado", "Mecánico y retroiluminado", 2500, "imagen", "ABC12", 30)
-manager.addProduct("Teclado", "Mecánico y retroiluminado", 2500, "imagen", "ABC12", 30)
+manager.addProduct("Teclado", "Mecánico y retroiluminado", 2500, "imagen", "ABC123", 30)
+manager.addProduct("Mouse", "Teclas auxiliares", 3500, "imagen", "ABC420", 15)
 manager.getProducts()
