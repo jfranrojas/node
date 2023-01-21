@@ -31,7 +31,7 @@ class productManager {
             throw new Error(err)
         }
     }
-    async getProductsById() {
+    async getProductsById(id) {
         try {
             const jsonProduct = await this.getProducts()
             return jsonProduct.find((item) => item.id === id) || null
@@ -40,7 +40,7 @@ class productManager {
             throw new Error(err)
         }
     }
-    async uptadeProduct() {
+    async updateProduct(id, product) {
         try {
             const jsonProduct = await this.getProducts()
             const position = jsonProduct.findIndex((productId) => productId.id === id)
@@ -53,7 +53,7 @@ class productManager {
             throw new Error(err)
         }
     }
-    async deleteProductById() {
+    async deleteProductById(id) {
         try {
             const jsonProduct = await this.getProducts()
             const filterProducts = jsonProduct.filter(product => product.id !== id) || null
@@ -67,12 +67,12 @@ class productManager {
         try {
             await fs.promises.writeFile(this.file, "[]");
         } catch (err) {
-            throw new Error(err);
+            throw new error(err);
         }
     }
 }
 
-const product1 = {
+const producto1 = {
     title: "Teclado ",
     description: "Mecánico y retroiluminado",
     price: 5000,
@@ -80,7 +80,7 @@ const product1 = {
     code: "ABC143",
     stock: 5,
 }
-const product2 = {
+const producto2 = {
     title: "Mouse Gamer",
     description: "Boton auxiliar y gamepad de regalo",
     price: 6000,
@@ -88,7 +88,23 @@ const product2 = {
     code: "ABC153",
     stock: 10,
 }
-const Reemplazo = {
+const producto3 = {
+    title: "Mouse Gamer",
+    description: "Boton auxiliar y gamepad de regalo, inalambrico",
+    price: 6000,
+    thumbnail: 'http://',
+    code: "ABC154",
+    stock: 10,
+}
+const producto4 = {
+    title: "Teclado Gamer",
+    description: "Teclado mecánico",
+    price: 6000,
+    thumbnail: 'http://',
+    code: "ABC155",
+    stock: 10,
+}
+const reemplazo = {
     title: "producto Remplazo",
     description: "A definir",
     price: 2000,
@@ -100,14 +116,16 @@ const Reemplazo = {
 const run = async () => {
     try{
     const products = new productManager("products.json")
-    await products.addProduct(product1)
-    await products.addProduct(product2)
+    await products.addProduct(producto1)
+    await products.addProduct(producto2)
+    await products.addProduct(producto3)
+    await products.addProduct(producto4)
     console.log("primera consulta", await products.getProducts())
-    console.log("byId", await products.getById(2))
-    await products.updateProduct(2, Reemplazo)
+    // console.log("byId", await products.getProductsById(2))
+    await products.updateProduct(2, reemplazo)
     console.log("segunda consulta", await products.getProducts())
-    console.log("byId", await products.getById(2))
-    // await products.deleteById(2)
+    console.log("byId", await products.getProductsById(2))
+    // await products.deleteProductById(2)
     // await products.deleteAll()    
     }
     catch{
