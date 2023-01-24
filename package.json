@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node entregables/entregable3/app.js",
-    "dev": "nodemon entregables/entregable3/app.js",
+    "start": "node entregables/entregable3/src/app.js",
+    "dev": "nodemon entregables/entregable3/src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {

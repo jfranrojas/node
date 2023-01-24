@@ -6,7 +6,8 @@ class productManager {
     }
     async getNewId() {
         let idMax = 0
-        this.products.forEach(product => {
+        const jsonProduct = await this.getProducts()
+        jsonProduct.forEach(product => {
             if (product.id > idMax) {
                 idMax = product.id
             }
@@ -31,7 +32,7 @@ class productManager {
             throw new Error(err)
         }
     }
-    async getProductsById() {
+    async getProductsById(id) {
         try {
             const jsonProduct = await this.getProducts()
             return jsonProduct.find((item) => item.id === id) || null
@@ -40,7 +41,7 @@ class productManager {
             throw new Error(err)
         }
     }
-    async uptadeProduct() {
+    async updateProduct(id, product) {
         try {
             const jsonProduct = await this.getProducts()
             const position = jsonProduct.findIndex((productId) => productId.id === id)
@@ -53,7 +54,7 @@ class productManager {
             throw new Error(err)
         }
     }
-    async deleteProductById() {
+    async deleteProductById(id) {
         try {
             const jsonProduct = await this.getProducts()
             const filterProducts = jsonProduct.filter(product => product.id !== id) || null
