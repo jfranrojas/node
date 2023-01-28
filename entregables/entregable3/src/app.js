@@ -10,7 +10,7 @@ app.use(express.urlencoded({extended:true}))
 
 
 app.get('/', (req, res) => {
-    res.send('Entregable 3, express')
+    res.send('Aca probando express')
 })
 
 app.get('/products', async (req, res) => {
