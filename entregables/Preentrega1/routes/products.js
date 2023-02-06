@@ -24,10 +24,10 @@ productsRouter.get('/', async (req, res) => {
 
 productsRouter.get('/:bid', async (req, res) =>{
     try{
-        const id = Number(req.params.pid)
+        const id = Number(req.params.bid)
         const productId = await manager.getProductsById(id)
         if(!productId){
-            res.status(400).send({status:"NOT FOUND", error:"EL ID BUSCADO NO EXISTE"})
+            res.status(400).send({status:"NOT FOUND", error:"EL ID BUSCADO NO EXISTE 🔴"})
         }
         else{
             res.send(productId)
@@ -38,14 +38,14 @@ productsRouter.get('/:bid', async (req, res) =>{
     }
 })
 
-productsRouter.post('/', async (req, res) => {
+productsRouter.post('/add', async (req, res) => {
     try {
         const newProduct = await manager.addProduct(req.body);
         if(newProduct === "Error"){
             res.send({error: "Faltan datos de tu producto 😒"})
         }
         else{
-            res.send(`Producto:${req.body.title} agregado 👌`)
+            res.send(`Producto: ${req.body.title} agregado 👌`)
         } 
     }
     catch (err) {
@@ -57,7 +57,7 @@ productsRouter.put('/:bid', async (req,res) => {
         const id = Number(req.params.bid)
         const productUpdate = req.body
         await manager.updateProduct(id, productUpdate);
-        res.send(`Id: ${productUpdate.id} actualizado correctamente 👍 `)
+        res.send(`Id: ${req.body.id} actualizado correctamente 👍 `) 
     }
     catch (err) {
         req.status(500).send({error:err.message})
