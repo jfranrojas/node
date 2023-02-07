@@ -14,6 +14,11 @@ app.use(express.json())
 app.use(express.urlencoded({extended:true}))
 app.use('/api/products', productsRouter)
 app.use('/api/cart', cartRouter)
+
+
+app.get('/', (req, res) =>{
+    res.send("Esta es mi primer Pre entrega")
+})
 // #endregion
 
 const server = app.listen(PORT, ()=> console.log(`Server listening on port ${PORT}`))

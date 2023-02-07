@@ -31,7 +31,7 @@ class cartManager{
             return {error: error.message}
         }
     }
-    async CreateCart(){
+    async createCart(){
         try {
             const jsonData = await this.getCart()
             jsonData.push({id: await this.getNewId(), products:[] })
@@ -41,7 +41,7 @@ class cartManager{
             return {error: error.message}
         }
     }
-    async CartProducts(idCart, product){
+    async cartProducts(idCart, product){
         try {
             let quantity = 1
             const data = await this.getCart()
