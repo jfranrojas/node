@@ -7,7 +7,7 @@ class cartManager{
     async getNewId(){
         let idMax = 0
         const jsonCart = await this.getCart()
-        jsonCart.forEach(product => {
+        jsonCart.forEach(cart => {
             if (cart.id > idMax) {
                 idMax = cart.id
             }

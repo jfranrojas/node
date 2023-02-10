@@ -3,7 +3,7 @@ const cartRouter = Router()
 const cartManager = require("../src/cartManager")
 const managerCart = new cartManager("./entregables/cart.json")
 const productManager = require("../src/productManager")
-const managerProduct = new productManager("./entregables/product.json")
+const managerProduct = new productManager("./entregables/products.json")
 
 cartRouter.get('/:cid', async (req, res) => {
     const id = Number(req.params.cid)
@@ -13,7 +13,7 @@ cartRouter.get('/:cid', async (req, res) => {
 
 cartRouter.post('/', async (req, res) =>{
     try {
-        await managerCart.CreateCart();
+        await managerCart.createCart();
         res.send("Cart created successfully")
 
     } catch (error) {
@@ -30,7 +30,7 @@ cartRouter.post('/:cid/product/:pid', async (req, res) => {
             res.status(404).send({error: "Product not found"})
         }
         else{
-            await managerCart.addProductInCart(cartId, findProduct)
+            await managerCart.cartProducts(cartId, findProduct)
             res.send(`Producto con id: ${productId} agregado correctamente al carrito con id ${cartId}`)
         }
     } catch (error) {
