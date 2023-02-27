@@ -17,10 +17,10 @@ class mongoDbProductContainer {
             const allProducts = await this.productCollection.find().lean()
             return allProducts
         } catch (error) {
-            return {error: err.message}
+            return {error: error.message}
         }
     }
-    async getByid(id){
+    async getById(id){
         try {
             const product = await this.productCollection.findOne({_id:id}).lean()
             if(!product){
@@ -31,7 +31,7 @@ class mongoDbProductContainer {
             if(err.name === 'CastError'){
                 return {error: `Id invalido ${id}`}
             }
-            return {error: err.message}
+            return {error: error.message}
         }
     }
     async addProduct(product){
@@ -49,7 +49,7 @@ class mongoDbProductContainer {
                 const createdProduct = await newProduct.save()
                 return createdProduct
         } catch (error) {
-            return {error: err.message}
+            return {error: error.message}
         }
     }
     async updateProduct(id, product){
@@ -82,7 +82,7 @@ class mongoDbProductContainer {
             if(error.name === 'CastError'){
                 return {error: `Id invalido -----> ${id}`}
             }
-            return{error: err.message}
+            return{error: error.message}
         }
     }
 }

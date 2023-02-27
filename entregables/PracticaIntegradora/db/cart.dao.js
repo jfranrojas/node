@@ -30,6 +30,52 @@ class mongoDbProductContainer {
         }
     }
     async getProductsInCart(id){
-            
+            try {
+                const cartId = await this.cartCollection.findOne({_id: id}).populate("products.product")
+                if(!cartId){
+                    return {error: `No existe un cart con un id: ${id}`}
+                }
+                const products = cartId.products
+                return products
+            } catch (error) {
+                if(error.name === 'CastError'){
+                    return {error: `id inválido: ${id}`}
+            }
+            return {error: error.message}
+        }
     }
+    async createCart(){
+        try {
+            const cart = new this.cartCollection()
+            const addedCart = cart.save()
+            return addedCart
+        } catch (error) {
+            return {error: error.message}
+        }
+    }
+    async addProductInCart(id, product){
+        try {
+            const cart = await this.cartCollection.findOne({_id: id})
+            if(!cart){
+                return {error: `No existe un cart con el id: ${id}`}
+            }
+            const productDetails = await productDAO.getById({_id: productId});
+
+            if(!productDetails._id){
+                return {error: `No existe un producto con el id: ${productId}`}
+            }
+            const productIndex = cart.products.findIndex(p=> String(p.id) === productId);
+            if(productIndex >= 0){
+                cart.products.push({products: productDetails._id})
+            }
+            const updatedCart = await cart.save();
+            return updatedCart.products;
+        } catch (error) {
+            return {error: error.message}
+        }   
+    }
+
+
 }
+
+module.exports = mongoDbCartContainer;
