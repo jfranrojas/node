@@ -1,7 +1,7 @@
 const { Router } = require('express')
 const productsRouter = Router()
 
-const productManager = require("../src/productManager");
+const productManager = require("../productManager");
 const manager = new productManager("./entregables/products.json")
 
 productsRouter.get('/', async (req, res) => {
