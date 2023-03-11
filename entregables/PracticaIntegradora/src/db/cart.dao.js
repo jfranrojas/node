@@ -15,6 +15,14 @@ class mongoDbProductContainer {
     constructor(collection, schema){
         this.cartCollection = mongoose.model(collection, schema)
     }
+    async getCarts(){
+        try {
+            const carts = await this.cartCollection.find()
+            return carts
+        } catch (error) {
+            return {error: error.message}
+        }
+    }
     async getCartByid(id){
         try {
             const cartId = await this.cartCollection.findOne({_id: id})
@@ -53,7 +61,7 @@ class mongoDbProductContainer {
             return {error: error.message}
         }
     }
-    async addProductInCart(id, product){
+    async addProductInCart(id, productId){
         try {
             const cart = await this.cartCollection.findOne({_id: id})
             if(!cart){
@@ -75,6 +83,42 @@ class mongoDbProductContainer {
         }   
     }
 
+    async deleteCartById(id){
+        try {
+            const cartId = await this.cartCollection.findByIdAndRemove({_id: id})
+            if(!cartId){
+                return {error: `No existe un cart con el id: ${id}`}
+            }
+            return {eliminado : `El cart con id: ${id}, ha sido eliminado correctamente`}
+        } catch (error) {
+            if(error.name === 'CastError'){
+                return { error: `Id invalido ----> ${id}`}
+            }
+            return {error: error.message}
+        }
+    }
+
+    async deleteProductInCart(id, productId){
+        try {
+            const cart = await this.cartCollection.findOne({_id: id})
+            if(!cart){
+                return { error: `No existe un cart con el id: ${id}` }
+            }
+            const productDetails = await productDAO.getById({_id: productId});
+            console.log(productDetails)
+            if(!productDetails._id){
+                return {error : `No existe un producto con el id: ${id}` }
+            }
+            const productIndex = cart.products.findIndex(p => String(p.product) === productId)
+            console.log(productIndex)
+            cart.products.splice(productIndex, 1)
+            const updatedCart = await cart.save();
+            return updatedCart.products;
+
+        } catch (error) {
+            return {error : error.message}
+        }
+    }
 
 }
 
