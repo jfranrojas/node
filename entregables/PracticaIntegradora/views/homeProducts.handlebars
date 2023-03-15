@@ -1,0 +1,32 @@
+<div class="productContainer">
+    <h1>Products</h1>
+    <div class="products" id="products">
+        {{#each products}}
+        <div class="cardContainer">
+            <div class="cardInfo">
+                <img class="cardImg"  src="{{this.thumbnail}}" alt="{{this.title}}">
+                <h3 class="cardTitle">{{this.title}}</h3>
+                <p class="cardDesc">{{this.description}}</p>
+                <p class="cardPrice">{{this.price}}</p>
+                <a href="/api/products/{{this._id}}"><button class="cardButton">Go detail</button></a>
+                <button class="cardButton" onclick="deleteProduct('{{this._id}}')">Eliminar</button>
+
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+<div id="realTimeContainer">
+    <form class="formContainer" id="formProduct">
+        <h2 class="formTitle">Add product</h2>
+        <input type="text" placeholder="Title" name="Title" class="formInput" id="title" required   />
+        <input type="text" placeholder="Description" name="Description" class="formInput" id="description" required maxlength="40" />
+        <input type="text" placeholder="Code" name="code" class="formInput" id="code" required maxlength="8" />
+        <input type="text" placeholder="Category" id="category" name="category" class="formInput" required maxlength="20">
+        <input type="text" placeholder="Url image" name="img" id="img" class="formInput" required />
+        <input type="number" placeholder="Stock" id="stock" class="formInput" name="stock" required />
+        <input type="number" placeholder="Price" id="price" class="formInput" name="price" required />
+        <button class="buttonForm" type="submit">Done</button>  
+    </form>
+</div>
+<script src="/entregables/PracticaIntegradora/public/js/index.js"></script>
