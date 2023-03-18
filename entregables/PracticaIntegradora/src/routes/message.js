@@ -1,6 +1,6 @@
 const {Router} = require('express')
 const messageRouter = Router();
-const { addMessages } = require('../controllers/message.js')
+const { addMessages } = require('../controllers/message')
 
 messageRouter.get('/', async (req, res) => {
     try {

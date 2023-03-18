@@ -3,12 +3,12 @@ const app = express();
 require("dotenv").config();
 const path = require("path");
 const handlebars = require('express-handlebars');
-const {Server} = require("socket.io");
+const {Server} = require('socket.io');
 
 const PORT = process.env.PORT || 4200
-const productsRouter = require('./routes/product')
-const cartRouter = require('./routes/cart.js')
-const messageRouter = require('./routes/message.js')
+const productsRouter = require('./routes/product');
+const cartRouter = require('./routes/cart.js');
+const messageRouter = require('./routes/message.js');
 
 
 app.engine('handlebars', handlebars.engine())

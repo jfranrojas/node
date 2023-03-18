@@ -11,7 +11,7 @@ mongoose.connect(connection, error => {
         process.exit()
     }
 })
-class mongoDbProductContainer {
+class mongoDbCartContainer {
     constructor(collection, schema){
         this.cartCollection = mongoose.model(collection, schema)
     }
