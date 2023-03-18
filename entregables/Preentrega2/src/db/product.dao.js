@@ -87,4 +87,4 @@ class mongoDbProductContainer {
     }
 }
 
-module.exports = mongoDbProductContainer; 
+module.export = mongoDbProductContainer; 
