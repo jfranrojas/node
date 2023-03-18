@@ -47,6 +47,10 @@ const updateProductById = async (req, res) => {
     res.send(updateProduct)
 }
 const deleteById = async (req, res) => {
-        
+    const id = req.params.pid
+    const deletedProduct = serviceDeleteById(id);
+    res.send(deletedProduct)
 }
+
+module.exports = { addProduct, getProducts, getProductById, updateProductById, deleteById}
 

@@ -1,15 +1,15 @@
 const {Router} = require('express')
 const cartRouter = Router();
 const {
-    getcarts,
+    getCarts,
     createCart,
     getProductsInCart,
     deleteCart,
     addProductInCart,
     deleteProductInCart,
-} = require('../controllers/cart')
+} = require('../controllers/cart.js')
 
-cartRouter.get('/', getcarts)
+cartRouter.get('/', getCarts)
 cartRouter.post('/', createCart)
 cartRouter.get('/:cid', getProductsInCart)
 cartRouter.delete('/:cid', deleteCart)

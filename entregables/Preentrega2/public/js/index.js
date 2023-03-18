@@ -1,5 +1,3 @@
-const { application, json } = require("express");
-
 const productsContainer = document.getElementById("products")
 const form = document.getElementById('formProduct');
 
@@ -33,7 +31,6 @@ const submitForm = async () =>{
             stock: stock,
             category: category,
             thumbnail: img,
-
         }),
 
     })
@@ -42,7 +39,7 @@ const submitForm = async () =>{
 
 const deleteProduct = async (id) =>{
     await fetch(`${window.location.href}/${id}`,{
-        method:"DELETE",
+        method:"delete",
         mode: "cors",
         cache: "no-cache",
         headers: {
@@ -51,7 +48,6 @@ const deleteProduct = async (id) =>{
     });
     location.reload();
 }
-
 const nextPage = async(page) => {
     let nextPage = page++
     moveUrl(nextPage)

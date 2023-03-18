@@ -42,7 +42,7 @@ class mongoDbProductContainer {
                     const errorMessages = []
                     for(let errorField in validationError.errors){
                         const errorMessage = validationError.errors[errorField].message
-                        errorMessage.push(errorMessage)
+                        errorMessages.push(errorMessage)
                     }
                     return {error: errorMessages}
                 }

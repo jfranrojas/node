@@ -17,11 +17,11 @@ const getProducts = async (req, res) => {
         });
     }
     else {
-        let products = products.slice(0, limit)
+        let limitedProducts = products.slice(0, limit)
         res.render('homeProducts',{
             style:"index.css",
             title:"Home",
-            products
+            products: limitedProducts
         }
         );
     }

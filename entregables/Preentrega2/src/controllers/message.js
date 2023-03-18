@@ -1,7 +1,7 @@
 const {
     getMessageServices,
-    addMessageService,
-} = require('../services/messages');
+    addMessageServices,
+} = require("../services/message");
 
 const getMessages = async () =>{
     const messages = await getMessageServices();
@@ -9,8 +9,7 @@ const getMessages = async () =>{
 };
 
 const addMessages = async (message) => {
-    
-    const result = await addMessageService(message);
+    const result = await addMessageServices(message);
     return result;
 };
 
