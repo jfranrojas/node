@@ -7,13 +7,13 @@ const serviceGetProducts = async () => {
     return getProducts;
 }
 
-const serviceGetById = async () => {
-    let getById = await productDAO.getById()
+const serviceGetById = async (id) => {
+    let getById = await productDAO.getById(id)
     return getById;
 }
 
-const serviceAddProducts = async () =>{
-    let addProducts = await productDAO.addProducts(product)
+const serviceAddProducts = async (product) => {    
+    let addProducts = await productDAO.addProduct(product)
     return addProducts;
 }
 

@@ -6,7 +6,7 @@ const handlebars = require('express-handlebars');
 const {Server} = require('socket.io');
 
 const PORT = process.env.PORT || 4200
-const productsRouter = require('./routes/product');
+const productsRouter = require('./routes/product.js');
 const cartRouter = require('./routes/cart.js');
 const messageRouter = require('./routes/message.js');
 

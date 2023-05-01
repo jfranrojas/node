@@ -10,8 +10,8 @@ body {
 }
 
 :root {
-    --main-color: #efa51e;
-    --black: #1c1c1c;
+    --main-color: #d32313;
+    --black: #1a1f83c4;
     --white: #f5f5f5;
 
 }
@@ -112,6 +112,7 @@ h1 {
     border-radius: .6rem;
     padding: 1rem;
     font-family: 'Antonio', sans-serif;
+    margin: 0.3rem;
 
 }
 
