@@ -4,7 +4,8 @@ const {
     serviceAddCartProduct,
     serviceDeleteCart,
     serviceGetCarts,
-    serviceDeleteCartProduct
+    serviceDeleteCartProduct,
+    updateQuantityProductService,
 } = require ('../services/cart')
 
 const getCarts = async (req, res) => {
@@ -37,4 +38,9 @@ const deleteProductInCart = async (req, res) => {
     res.send(deleteProduct)
 }
 
-module.exports = {getCarts, createCart, getProductsInCart,  deleteCart, addProductInCart, deleteProductInCart}
+const updateQuantityProduct = async (req, res) => {
+    const result = await updateQuantityProductService(req.params, req.body);
+    res.send(result);
+}
+
+module.exports = {getCarts, createCart, getProductsInCart,  deleteCart, addProductInCart, deleteProductInCart, updateQuantityProduct}
